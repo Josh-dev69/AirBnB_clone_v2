@@ -2,7 +2,7 @@
 """
 Start a Flask web application that display "Hello HBNB!"
 """
-from flask import Flask, app
+from flask import Flask
 
 app = Flask(__name__)
 
