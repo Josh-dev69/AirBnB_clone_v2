@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 """
-Start a Flask web application.
+Start a Flask Web application
 
 """
-
-from flask import Flask, url_for
-
+from flask import Flask
 app = Flask(__name__)
 
 
@@ -20,17 +18,26 @@ def hello_hbnb():
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """
-    function to HBNB
+    function to display HBNB!
     """
     return "HBNB"
 
 
 @app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
-    """ routing to c with parameters"""
+    """ routing to /c with parameter"""
     if '_' in text:
         text = text.replace('_', ' ')
     return f"C {text}"
+
+
+@app.route('/python/', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def python_text(text="is cool"):
+    """ routing to /python with parameter"""
+    if '_' in text:
+        text = text.replace('_', ' ')
+    return f"Python {text}"
 
 
 if __name__ == "__main__":
