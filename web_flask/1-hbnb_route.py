@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 Start a Flask web application.
+
 """
 from flask import Flask, app
 
@@ -18,9 +19,9 @@ def hello_hbnb():
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """
-    Function to display 'HBNB!'.
+    Function to display 'HBNB'.
     """
-    return 'HBNB!'
+    return 'HBNB'
 
 
 if __name__ == '__main__':

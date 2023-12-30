@@ -40,5 +40,12 @@ def python_text(text="is cool"):
     return f"Python {text}"
 
 
+@app.route('/number/<int:n>', strict_slashes=False)
+def is_number(n):
+    """ Function to route if the parameter is int"""
+    return f"{n} is a number"
+
+
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
+
