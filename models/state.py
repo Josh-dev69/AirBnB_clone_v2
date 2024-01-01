@@ -10,4 +10,16 @@ class State(BaseModel, Base):
     and the Base ORM """
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
-    cities = relationship('City', backref='state', cascade='all')
+
+    # If storage engine is not DBStorage, add the following code
+    if models.storage.__class__.__name__ != 'DBStorage':
+        @property
+        def cities(self):
+            """ Getter method for cities linked to the current State """
+            city_list = []
+            for city in models.storage.all(models.City).values():
+                if city.state_id == self.id:
+                    city_list.append(city)
+            return city_list
+    else:
+        cities = relationship('City', backref='state', cascade='all')

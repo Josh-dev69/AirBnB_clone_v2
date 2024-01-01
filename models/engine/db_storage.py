@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 """
 This module serves as the database engine
 to the software
@@ -27,10 +29,7 @@ class DBStorage:
     __session = None
 
     def __init__(self):
-        """
-        seting up the databse
-
-        """
+        """ seting up the databse """
         user = getenv('HBNB_MYSQL_USER')
         password = getenv('HBNB_MYSQL_PWD')
         host = getenv('HBNB_MYSQL_HOST')
@@ -47,8 +46,7 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """ return all object fron db and
-        convet to dictioaney """
+        """ return all object fron db and convert to dictionary """
         dic = {}
         if cls:
             if type(cls) is str:
@@ -71,13 +69,11 @@ class DBStorage:
         self.__session.add(obj)
 
     def save(self):
-        """save changes
-        """
+        """ save changes """
         self.__session.commit()
 
     def reload(self):
-        """configuration
-        """
+        """ configuration """
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
@@ -85,5 +81,7 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        """ closing a session conection """
-        self.__session.close()
+        """
+        Calls remove() on the private session attribute (self.__session).
+        """
+        self.__session.remove()
